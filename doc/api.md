@@ -34,9 +34,11 @@
   "input_file_options": "string",
   "output_url": "string",
   "name": "string",
+  "version": "string",
   "output_file_options": "string",
   "global_options": "string",
-  "instance_type": "string"
+  "instance_type": "string",
+  "dashnames": "string"
 }
 ```
 
@@ -48,9 +50,11 @@
 |» input_file_options|body|string|false|none|
 |» output_url|body|string|false|none|
 |» name|body|string|false|none|
+|» version|body|string|false|none|
 |» output_file_options|body|string|false|none|
 |» global_options|body|string|false|none|
 |» instance_type|body|string|false|none|
+|» dashnames|body|string|false|none|
 
 > Example responses
 
@@ -116,9 +120,11 @@ sigv4
   "input_file_options": "string",
   "output_url": "string",
   "name": "string",
+  "version": "string",
   "output_file_options": "string",
   "global_options": "string",
-  "instance_type": "string"
+  "instance_type": "string",
+  "dashnames": "string"
 }
 ```
 
@@ -130,9 +136,11 @@ sigv4
 |» input_file_options|body|string|false|none|
 |» output_url|body|string|false|none|
 |» name|body|string|false|none|
+|» version|body|string|false|none|
 |» output_file_options|body|string|false|none|
 |» global_options|body|string|false|none|
 |» instance_type|body|string|false|none|
+|» dashnames|body|string|false|none|
 
 > Example responses
 
@@ -162,9 +170,11 @@ sigv4
   "input_file_options": "string",
   "output_url": "string",
   "name": "string",
+  "version": "string",
   "output_file_options": "string",
   "global_options": "string",
-  "instance_type": "string"
+  "instance_type": "string",
+  "dashnames": "string"
 }
 ```
 
@@ -176,9 +186,11 @@ sigv4
 |» input_file_options|body|string|false|none|
 |» output_url|body|string|false|none|
 |» name|body|string|false|none|
+|» version|body|string|false|none|
 |» output_file_options|body|string|false|none|
 |» global_options|body|string|false|none|
 |» instance_type|body|string|false|none|
+|» dashnames|body|string|false|none|
 
 > Example responses
 
@@ -269,9 +281,11 @@ sigv4
   "input_file_options": "string",
   "output_url": "string",
   "name": "string",
+  "version": "string",
   "output_file_options": "string",
   "global_options": "string",
-  "instance_type": "string"
+  "instance_type": "string",
+  "dashnames": "string"
 }
 ```
 
@@ -283,9 +297,11 @@ sigv4
 |» input_file_options|body|string|false|none|
 |» output_url|body|string|false|none|
 |» name|body|string|false|none|
+|» version|body|string|false|none|
 |» output_file_options|body|string|false|none|
 |» global_options|body|string|false|none|
 |» instance_type|body|string|false|none|
+|» dashnames|body|string|false|none|
 
 > Example responses
 
@@ -315,9 +331,11 @@ sigv4
   "input_file_options": "string",
   "output_url": "string",
   "name": "string",
+  "version": "string",
   "output_file_options": "string",
   "global_options": "string",
-  "instance_type": "string"
+  "instance_type": "string",
+  "dashnames": "string"
 }
 ```
 
@@ -329,9 +347,11 @@ sigv4
 |» input_file_options|body|string|false|none|
 |» output_url|body|string|false|none|
 |» name|body|string|false|none|
+|» version|body|string|false|none|
 |» output_file_options|body|string|false|none|
 |» global_options|body|string|false|none|
 |» instance_type|body|string|false|none|
+|» dashnames|body|string|false|none|
 
 > Example responses
 
@@ -397,9 +417,11 @@ sigv4
   "input_file_options": "string",
   "output_url": "string",
   "name": "string",
+  "version": "string",
   "output_file_options": "string",
   "global_options": "string",
-  "instance_type": "string"
+  "instance_type": "string",
+  "dashnames": "string"
 }
 ```
 
@@ -411,9 +433,11 @@ sigv4
 |» input_file_options|body|string|false|none|
 |» output_url|body|string|false|none|
 |» name|body|string|false|none|
+|» version|body|string|false|none|
 |» output_file_options|body|string|false|none|
 |» global_options|body|string|false|none|
 |» instance_type|body|string|false|none|
+|» dashnames|body|string|false|none|
 
 > Example responses
 
@@ -443,9 +467,11 @@ sigv4
   "input_file_options": "string",
   "output_url": "string",
   "name": "string",
+  "version": "string",
   "output_file_options": "string",
   "global_options": "string",
-  "instance_type": "string"
+  "instance_type": "string",
+  "dashnames": "string"
 }
 ```
 
@@ -457,9 +483,11 @@ sigv4
 |» input_file_options|body|string|false|none|
 |» output_url|body|string|false|none|
 |» name|body|string|false|none|
+|» version|body|string|false|none|
 |» output_file_options|body|string|false|none|
 |» global_options|body|string|false|none|
 |» instance_type|body|string|false|none|
+|» dashnames|body|string|false|none|
 
 > Example responses
 
@@ -581,9 +609,11 @@ batch-describe-request-schema
   "input_file_options": "string",
   "output_url": "string",
   "name": "string",
+  "version": "string",
   "output_file_options": "string",
   "global_options": "string",
-  "instance_type": "string"
+  "instance_type": "string",
+  "dashnames": "string"
 }
 
 ```
@@ -597,6 +627,8 @@ ffmpeg-request-schema
 |input_file_options|string|false|none|none|
 |output_url|string|false|none|none|
 |name|string|false|none|none|
+|» version|body|string|false|none|
 |output_file_options|string|false|none|none|
 |global_options|string|false|none|none|
 |instance_type|string|false|none|none|
+|» dashnames|body|string|false|none|

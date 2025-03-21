@@ -7,7 +7,7 @@
     "@aws-cdk/aws-rds:lowercaseDbIdentifier": true,
     "@aws-cdk/core:stackRelativeExports": true,
     "batch-ffmpeg:lustre-fs:enable": false,
-    "batch-ffmpeg:lustre-fs:storage_capacity_gi_b": 1200
+    "batch-ffmpeg:lustre-fs:storage_capacity_gi_b": 200
   },
   "watch": {
     "exclude": [

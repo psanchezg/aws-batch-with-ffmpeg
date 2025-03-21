@@ -14,7 +14,7 @@ WORKDIR     /tmp/workdir
 
 RUN     apt-get -yqq update && \
         apt-get -yqq upgrade && \
-        apt-get install -yqq --no-install-recommends ca-certificates expat libgomp1 software-properties-common && \
+        apt-get install -yqq --no-install-recommends ca-certificates expat libgomp1 software-properties-common lsb-release curl bzip2 wget && \
         apt-get autoremove -y && \
         apt-get clean -y && \
         rm -rf /var/lib/apt/lists/*
@@ -56,6 +56,7 @@ ENV     FFMPEG_VERSION=7.0.1 \
         LIBPNG_VERSION=1.6.40 \
         LIBVMAF_VERSION=2.3.1 \
         HARFBUZZ_VERSION=8.2.1 \
+        SHAKAPACKAGER_VERSION=3.2.0 \
         SRC=/usr/local
 
 ARG         LD_LIBRARY_PATH=/opt/ffmpeg/lib
@@ -67,11 +68,8 @@ ARG         LD_LIBRARY_PATH="/opt/ffmpeg/lib:/opt/ffmpeg/lib64"
 ARG DEBIAN_FRONTEND=noninteractive
 
 # Dependencies
-RUN      buildDeps="autoconf \
+RUN     buildDeps="autoconf \
         automake \
-        cmake \
-        curl \
-        bzip2 \
         libexpat1-dev \
         g++ \
         gcc \
@@ -85,12 +83,54 @@ RUN      buildDeps="autoconf \
         pkg-config \
         ninja-build \
         libssl-dev \
+        libcurl4-openssl-dev \
         yasm \
         zlib1g-dev" && \
         apt-get -yqq update && \
         apt-get install -yqq --no-install-recommends ${buildDeps} && \
         pip3 install --quiet --no-cache-dir meson
 
+        # Install cmake latest
+ARG CMAKE_VERSION=3.28
+ARG CMAKE_BUILD=1
+RUN DIR=/tmp/cmake \
+    && mkdir -p ${DIR} \
+    && cd ${DIR} \
+    && wget https://cmake.org/files/v${CMAKE_VERSION}/cmake-${CMAKE_VERSION}.${CMAKE_BUILD}.tar.gz \
+    && tar -xzvf cmake-${CMAKE_VERSION}.${CMAKE_BUILD}.tar.gz \
+    && cd cmake-${CMAKE_VERSION}.${CMAKE_BUILD}/ \
+    && ./bootstrap --prefix=/usr \
+    && make -j$(nproc) \
+    && make install
+
+RUN echo "## shaka-packager https://github.com/shaka-project/shaka-packager"
+RUN DIR=/tmp/shaka-packager && \
+    mkdir -p ${DIR} && \
+    cd ${DIR} && \
+    curl -sLO https://github.com/shaka-project/shaka-packager/releases/download/v${SHAKAPACKAGER_VERSION}/packager-linux-arm64 && \
+    chmod a+x packager-linux-arm64 && \
+    cp packager-linux-arm64 /usr/local/bin/packager
+
+RUN DIR=/tmp/shaka-packager && \
+    mkdir -p ${DIR} && \
+    cd ${DIR} && \
+    curl -sLO https://github.com/shaka-project/shaka-packager/releases/download/v${SHAKAPACKAGER_VERSION}/mpd_generator-linux-arm64 && \
+    chmod a+x mpd_generator-linux-arm64 && \
+    cp mpd_generator-linux-arm64 /usr/local/bin/mpd_generator
+
+# RUN \
+#         DIR=/tmp/shaka-packager && \
+#         mkdir -p ${DIR} && \
+#         cd ${DIR} && \
+#         curl -sLO https://github.com/shaka-project/shaka-packager/archive/v${SHAKAPACKAGER_VERSION}.tar.gz && \
+#         tar -xz --strip-components=1 -f v${SHAKAPACKAGER_VERSION}.tar.gz && \
+#         cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS="OFF" -DFULLY_STATIC="ON" && \
+#         cmake --build build/ --config Release --parallel && \
+#         cmake --install build/ --strip --config Release && \
+#         cp ${DIR}/build/packager/mpd_generator /usr/local/bin/ && \
+#         cp ${DIR}/build/packager/pssh-box.py /usr/local/bin/ && \
+#         cp ${DIR}/build/packager/pssh-box-protos /usr/local/bin/ && \
+#         rm -rf ${DIR}
 RUN echo "## libvmaf https://github.com/Netflix/vmaf"
 RUN \
         DIR=/tmp/vmaf && \
@@ -439,6 +479,7 @@ RUN mkdir -p /usr/share/fonts/truetype/ && \
         fc-cache -fv
 
 RUN pip3 install --quiet --no-cache-dir -r requirements.txt
+    # \ && apt install bash optipng
 
 CMD ["--help"]
 ENTRYPOINT  ["python3", "wrapper.py"]

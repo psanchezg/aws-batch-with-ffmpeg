@@ -349,3 +349,18 @@ To avoid unwanted charges:
 1. Delete all objects in the S3 bucket used for testing
 2. Destroy the AWS CDK stack: ```task cdk:destroy```
 3. Verify all resources have been removed through the AWS console
+
+
+## Exec
+
+**Init**
+
+```
+export CDK_DEPLOY_ACCOUNT=xxxxxxxxx
+export CDK_DEPLOY_REGION=eu-west-1
+export CDK_DEFAULT_ACCOUNT=xxxxxxxxx
+export AWS_DEFAULT_REGION=eu-west-1
+export AWS_ACCOUNT_ID=xxxxxxxxx
+export AWS_PROFILE=cdk
+cdk bootstrap
+```

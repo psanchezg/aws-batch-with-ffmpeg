@@ -1,0 +1,6 @@
+.venv
+.task
+cdk.out
+cdk/**/__pycache__
+application/dist_lambda.zip
+.env

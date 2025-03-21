@@ -8,7 +8,7 @@
 #
 # Guillaume Marchand - AWS - gmarchan@amazon.fr
 #
-FROM        ubuntu:20.04 AS base
+FROM        --platform=linux/amd64 ubuntu:20.04 AS base
 
 WORKDIR     /tmp/workdir
 
@@ -105,17 +105,17 @@ RUN \
         mkdir -p ${PREFIX}/share/model/ && \
         cp -r /tmp/vmaf/model/* ${PREFIX}/share/model/ && \
         rm -rf ${DIR}
-RUN echo "## opencore-amr https://sourceforge.net/projects/opencore-amr/"
-RUN \
-        DIR=/tmp/opencore-amr && \
-        mkdir -p ${DIR} && \
-        cd ${DIR} && \
-        curl -sL https://sourceforge.net/projects/opencore-amr/files/opencore-amr/opencore-amr-${OPENCOREAMR_VERSION}.tar.gz/download | \
-        tar -zx --strip-components=1 && \
-        ./configure --prefix="${PREFIX}" --enable-shared  && \
-        make && \
-        make install && \
-        rm -rf ${DIR}
+# RUN echo "## opencore-amr https://sourceforge.net/projects/opencore-amr/"
+# RUN \
+#         DIR=/tmp/opencore-amr && \
+#         mkdir -p ${DIR} && \
+#         cd ${DIR} && \
+#         curl -sL https://sourceforge.net/projects/opencore-amr/files/opencore-amr/opencore-amr-${OPENCOREAMR_VERSION}.tar.gz/download | \
+#         tar -zx --strip-components=1 && \
+#         ./configure --prefix="${PREFIX}" --enable-shared  && \
+#         make && \
+#         make install && \
+#         rm -rf ${DIR}
 RUN echo "## x264 http://www.videolan.org/developers/x264.html"
 RUN \
         DIR=/tmp/x264 && \
@@ -242,17 +242,17 @@ RUN \
         make && \
         make install && \
         rm -rf ${DIR}
-RUN echo "## openjpeg https://github.com/uclouvain/openjpeg"
-RUN \
-        DIR=/tmp/openjpeg && \
-        mkdir -p ${DIR} && \
-        cd ${DIR} && \
-        curl -sL https://github.com/uclouvain/openjpeg/archive/refs/tags/v${OPENJPEG_VERSION}.tar.gz | \
-        tar -zx --strip-components=1 && \
-        cmake -DBUILD_THIRDPARTY:BOOL=ON -DCMAKE_INSTALL_PREFIX="${PREFIX}" . && \
-        make && \
-        make install && \
-        rm -rf ${DIR}
+# RUN echo "## openjpeg https://github.com/uclouvain/openjpeg"
+# RUN \
+#         DIR=/tmp/openjpeg && \
+#         mkdir -p ${DIR} && \
+#         cd ${DIR} && \
+#         curl -sL https://github.com/uclouvain/openjpeg/archive/refs/tags/v${OPENJPEG_VERSION}.tar.gz | \
+#         tar -zx --strip-components=1 && \
+#         cmake -DBUILD_THIRDPARTY:BOOL=ON -DCMAKE_INSTALL_PREFIX="${PREFIX}" . && \
+#         make && \
+#         make install && \
+#         rm -rf ${DIR}
 RUN echo "## freetype https://www.freetype.org/ (used by libass)"
 RUN  \
         DIR=/tmp/freetype && \
@@ -380,9 +380,9 @@ RUN  \
         --enable-libfontconfig \
         --enable-libkvazaar \
         --enable-libmp3lame \
-        --enable-libopencore-amrnb \
-        --enable-libopencore-amrwb \
-        --enable-libopenjpeg \
+        # --enable-libopencore-amrnb \
+        # --enable-libopencore-amrwb \
+        # --enable-libopenjpeg \
         --enable-libopus \
         --enable-libtheora \
         --enable-libvmaf \
